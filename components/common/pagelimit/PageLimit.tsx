@@ -24,6 +24,7 @@ type PageLimitProps = {
     onPaginationChange: (pagination: PaginationData) => void;
     itemLabel?: string;
     className?: string;
+    mode?: "full" | "summary";
 };
 
 function getPageNumbers(currentPage: number, totalPages: number): (number | "ellipsis")[] {
@@ -46,6 +47,7 @@ export default function PageLimit({
     onPaginationChange,
     itemLabel = "items",
     className,
+    mode = "full",
 }: PageLimitProps) {
     const { page, pageSize, totalCount } = pagination;
     const totalPages = Math.max(1, Math.ceil(totalCount / pageSize));
@@ -68,6 +70,16 @@ export default function PageLimit({
     };
 
     const pageNumbers = getPageNumbers(page, totalPages);
+
+    if (mode === "summary") {
+        return (
+            <div className={cn("w-full", className)}>
+                <p className="text-sm text-gray-500">
+                    Showing {end} of {totalCount.toLocaleString()} {itemLabel}
+                </p>
+            </div>
+        );
+    }
 
     return (
         <div
