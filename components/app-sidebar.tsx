@@ -16,6 +16,7 @@ import { TerminalSquareIcon, Settings2Icon, LayoutDashboardIcon, BookIcon, Messa
 import { BookOpenIcon } from "lucide-react"
 import { BarChartIcon } from "lucide-react"
 import { usePathname } from "next/navigation"
+import { getStoredUserRole, inferRoleFromPathname } from "@/lib/auth-storage"
 
 
 const authorViewItems = [
@@ -206,9 +207,13 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const userRole = localStorage.getItem("userRole")
-  const navMain = userRole === "author" ? authorViewItems : userRole === "admin" ? adminViewItems : SuperAdminViewItems
   const pathname = usePathname()
+  const [storedRole, setStoredRole] = React.useState<string | null>(null)
+  React.useEffect(() => {
+    setStoredRole(getStoredUserRole())
+  }, [])
+  const userRole = storedRole ?? inferRoleFromPathname(pathname)
+  const navMain = userRole === "author" ? authorViewItems : userRole === "admin" ? adminViewItems : SuperAdminViewItems
   return (
     <Sidebar collapsible="icon" {...props} className={` text-white ${userRole === "admin" ? " bg-linear-to-b from-purple-700 to-pink-700!" : userRole === "super-admin" ? "bg-linear-to-b bg-blue-700 to-blue-900!" : "bg-violet-700 to-purple-600"}`}>
       <SidebarHeader>

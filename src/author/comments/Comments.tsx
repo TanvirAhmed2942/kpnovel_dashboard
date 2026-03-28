@@ -1,4 +1,5 @@
 "use client"
+import * as React from "react"
 import Link from "next/link"
 
 import { Badge } from "@/components/ui/badge"
@@ -7,6 +8,7 @@ import Stats from "@/components/common/stats/Stats"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { MessageCircleIcon } from "lucide-react"
 import CommentsTable from "@/src/admin/comments-moderation/CommentsTable"
+import { getStoredUserRole } from "@/lib/auth-storage"
 
 type CommentRow = {
     id: string
@@ -129,7 +131,10 @@ function Comments() {
         },
     ]
 
-    const userType = localStorage.getItem("userRole")
+    const [userType, setUserType] = React.useState<string | null>(null)
+    React.useEffect(() => {
+        setUserType(getStoredUserRole())
+    }, [])
 
     return (
         <div className="space-y-4">
