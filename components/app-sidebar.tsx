@@ -99,7 +99,7 @@ const adminViewItems = [
 const SuperAdminViewItems = [
   {
     title: "Dashboard",
-    url: "/super-admin/dashboard",
+    url: "/super_admin/dashboard",
     icon: (
       <LayoutDashboardIcon
       />
@@ -107,7 +107,7 @@ const SuperAdminViewItems = [
   },
   {
     title: "Users",
-    url: "/super-admin/users",
+    url: "/super_admin/users",
     icon: (
       <UsersIcon
       />
@@ -115,7 +115,7 @@ const SuperAdminViewItems = [
   },
   {
     title: "Contents",
-    url: "/super-admin/contents",
+    url: "/super_admin/contents",
     icon: (
       <BookIcon
       />
@@ -123,7 +123,7 @@ const SuperAdminViewItems = [
   },
   {
     title: "Authors",
-    url: "/super-admin/authors",
+    url: "/super_admin/authors",
     icon: (
       <UserIcon
       />
@@ -131,7 +131,7 @@ const SuperAdminViewItems = [
   },
   {
     title: "Votes & Ratings",
-    url: "/super-admin/votes-ratings",
+    url: "/super_admin/votes-ratings",
     icon: (
       <StarIcon
       />
@@ -139,7 +139,7 @@ const SuperAdminViewItems = [
   },
   {
     title: "Comments & Moderation",
-    url: "/super-admin/comments-moderation",
+    url: "/super_admin/comments-moderation",
     icon: (
       <MessageCircleIcon
       />
@@ -147,7 +147,7 @@ const SuperAdminViewItems = [
   },
   {
     title: "Settings",
-    url: "/super-admin/settings",
+    url: "/super_admin/settings",
     icon: (
       <SettingsIcon
       />

@@ -6,6 +6,7 @@ import SmallPageInfo from "@/components/common/smallPageInfo/smallPageInfo"
 import Stats from "@/components/common/stats/Stats"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { MessageCircleIcon } from "lucide-react"
+import CommentsTable from "@/src/admin/comments-moderation/CommentsTable"
 
 type CommentRow = {
     id: string
@@ -128,6 +129,8 @@ function Comments() {
         },
     ]
 
+    const userType = localStorage.getItem("userRole")
+
     return (
         <div className="space-y-4">
             <SmallPageInfo
@@ -171,6 +174,14 @@ function Comments() {
                     >
                         Liked Comments
                     </TabsTrigger>
+                    {userType === "super_admin" && (
+                        <TabsTrigger
+                            value="review-comments"
+                            className="text-gray-100 data-active:bg-linear-to-r from-blue-500 to-indigo-500"
+                        >
+                            Review Comments
+                        </TabsTrigger>
+                    )}
                 </TabsList>
 
                 <div className="w-full">
@@ -183,6 +194,11 @@ function Comments() {
                     <TabsContent value="total-likes">
                         <CommentList rows={totalLikes} />
                     </TabsContent>
+                    {userType === "super_admin" && (
+                        <TabsContent value="review-comments">
+                            <CommentsTable />
+                        </TabsContent>
+                    )}
                 </div>
 
             </Tabs>
