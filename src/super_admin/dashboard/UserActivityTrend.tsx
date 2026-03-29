@@ -39,8 +39,14 @@ function UserActivityTrend() {
         </CardTitle>
       </CardHeader>
       <CardContent className="px-6 pb-6 pt-2">
-        <div className="h-[280px] w-full">
-          <ResponsiveContainer width="100%" height="100%">
+        <div className="h-[280px] w-full min-w-0">
+          <ResponsiveContainer
+            width="100%"
+            height={280}
+            minWidth={0}
+            minHeight={280}
+            initialDimension={{ width: 800, height: 280 }}
+          >
             <LineChart
               data={chartData}
               margin={{ top: 12, right: 12, left: 4, bottom: 8 }}

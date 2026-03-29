@@ -5,7 +5,14 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   allowedDevOrigins: ["10.10.7.79", "via.placeholder.com"],
   images: {
-    domains: ["via.placeholder.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "via.placeholder.com",
+        port: "",
+        pathname: "/**",
+      },
+    ],
   },
 };
 

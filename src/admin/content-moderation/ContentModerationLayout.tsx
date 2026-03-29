@@ -5,7 +5,7 @@ import FilterSearch from "@/components/common/filter/FIlterSearch";
 import BookTable from "./BookTable";
 import ChaptersTable from "./ChaptersTable";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
+
 
 function ContentModerationLayout() {
   const search = {
@@ -32,10 +32,10 @@ function ContentModerationLayout() {
           title="Content Moderation"
           description="Manage your content moderation"
         />
-        <div className="flex gap-2">
+        {/* <div className="flex gap-2">
           <Button variant="outline" className="hover:bg-black hover:text-white">Add New Book</Button>
           <Button variant="outline" className="hover:bg-black hover:text-white">Add New Chapter</Button>
-        </div>
+        </div> */}
       </div>
 
       <FilterSearch search={search} selects={selects} />

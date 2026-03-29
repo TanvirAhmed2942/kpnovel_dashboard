@@ -88,8 +88,14 @@ function BookPerforming() {
             </CardHeader>
 
             <CardContent className="px-4 pb-4 pt-0">
-                <div className="h-[240px] w-full">
-                    <ResponsiveContainer width="100%" height="100%">
+                <div className="h-[240px] w-full min-w-0">
+                    <ResponsiveContainer
+                        width="100%"
+                        height={240}
+                        minWidth={0}
+                        minHeight={240}
+                        initialDimension={{ width: 800, height: 240 }}
+                    >
                         <BarChart
                             data={chartData}
                             margin={{ top: 8, right: 16, left: 0, bottom: 0 }}

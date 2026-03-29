@@ -41,6 +41,7 @@ function ToolbarBtn({
   active,
   disabled,
   title,
+  className,
   children,
 }: {
   onClick: () => void
@@ -48,6 +49,7 @@ function ToolbarBtn({
   disabled?: boolean
   title: string
   children: ReactNode
+  className?: string
 }) {
   return (
     <Button
@@ -59,8 +61,9 @@ function ToolbarBtn({
       disabled={disabled}
       onClick={onClick}
       className={cn(
-        "size-8 shrink-0",
-        active && "bg-muted text-foreground"
+        "size-8 shrink-0 hover:bg-linear-to-r from-violet-300 to-pink-500 hover:text-white",
+        active && "bg-gray-300/80 text-gray-700",
+        className
       )}
     >
       {children}
@@ -89,7 +92,7 @@ export function TipTapEditorToolbar({
   const chars = editor.storage.characterCount?.characters() ?? 0
 
   return (
-    <div className="flex flex-col gap-2 border-b border-border bg-muted/25 px-2 py-2">
+    <div className="flex flex-col gap-2 border-b border-border bg-muted/25  px-2 py-2">
       <div className="flex flex-wrap items-center gap-0.5">
         <ToolbarBtn
           title="Undo (Ctrl+Z)"
@@ -106,7 +109,7 @@ export function TipTapEditorToolbar({
           <Redo2Icon className="size-4" />
         </ToolbarBtn>
 
-        <span className="mx-1 h-6 w-px bg-border" aria-hidden />
+        <span className="mx-1 h-6 w-px bg-border " aria-hidden />
 
         <ToolbarBtn
           title="Paragraph"
@@ -264,13 +267,14 @@ export function TipTapEditorToolbar({
           title="Link"
           active={editor.isActive("link")}
           onClick={setLink}
+
         >
           <LinkIcon className="size-4" />
         </ToolbarBtn>
       </div>
 
       {showCharacterCount ? (
-        <p className="text-muted-foreground px-1 text-xs">
+        <p className="text-gray-700 px-1 text-xs ">
           {words.toLocaleString()} words · {chars.toLocaleString()} characters
         </p>
       ) : null}

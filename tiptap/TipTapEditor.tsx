@@ -72,7 +72,7 @@ export default function TipTapEditor({
       editorProps: {
         attributes: {
           class: cn(
-            "prose-book max-w-none text-sm leading-relaxed text-foreground md:text-sm",
+            "prose-book max-w-none text-sm leading-relaxed text-gray-700 md:text-sm",
             minHeight
           ),
         },
