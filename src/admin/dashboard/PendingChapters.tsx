@@ -8,7 +8,7 @@ const pendingChapters: PendingItem[] = [
         time: 'in about 3 hours',
     },
     {
-        title: 'The Lost Kingdom - Ch. 24',
+        title: 'The Lost Kingdom - Ch. 25',
         subtitle: 'by Michael Brown',
         time: 'in about 3 hours',
     },

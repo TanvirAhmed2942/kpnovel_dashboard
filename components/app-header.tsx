@@ -1,20 +1,37 @@
 "use client"
-import { NotificationsSheetTrigger } from "@/components/notifications-sheet"
-import { SidebarTrigger } from "@/components/ui/sidebar"
-import { CirclePower } from "lucide-react"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip"
-import { clearStoredUserRole } from "@/lib/auth-storage"
+
+import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { Separator } from "./ui/separator"
+import { CirclePower } from "lucide-react"
+
+import LogoutConfirmationModal from "@/components/common/logoutconfirmation/LogoutConfirmationModal"
+import { NotificationsSheetTrigger } from "@/components/notifications-sheet"
+import { Button } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator"
+import { SidebarTrigger } from "@/components/ui/sidebar"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import { clearStoredUserRole } from "@/lib/auth-storage"
 
 export function AppHeader() {
   const router = useRouter()
+  const [logoutOpen, setLogoutOpen] = useState(false)
+
+  const handleLogoutConfirm = () => {
+    clearStoredUserRole()
+    router.push("/auth/login")
+  }
+
   return (
     <TooltipProvider>
 
       <header className="flex h-16 w-full shrink-0 items-center justify-between gap-2 border-b border-border bg-sidebar transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
         <Tooltip>
-          <TooltipTrigger>
+          <TooltipTrigger asChild>
             <SidebarTrigger className="ml-2 text-gray-500 hover:text-gray-700 hover:bg-gray-200 rounded-md p-2 hover:cursor-pointer" />
           </TooltipTrigger>
           <TooltipContent>
@@ -22,23 +39,21 @@ export function AppHeader() {
           </TooltipContent>
         </Tooltip>
 
-
         <div className="flex items-center gap-2 mr-4">
-          <Tooltip>
-            <TooltipTrigger>
-              <NotificationsSheetTrigger className="mr-2" />
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Notifications</p>
-            </TooltipContent>
-          </Tooltip>
+          <NotificationsSheetTrigger className="mr-2" />
           <Separator orientation="vertical" className="h-8 w-px bg-gray-200" />
           <Tooltip>
-            <TooltipTrigger>
-              <CirclePower className="text-red-400 hover:text-red-700 hover:bg-gray-200 rounded-xl p-2 hover:cursor-pointer size-8  " onClick={() => {
-                clearStoredUserRole()
-                router.push("/auth/login")
-              }} />
+            <TooltipTrigger asChild>
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="size-8 rounded-xl text-red-400 hover:bg-gray-200 hover:text-red-700"
+                aria-label="Log out"
+                onClick={() => setLogoutOpen(true)}
+              >
+                <CirclePower className="size-5" />
+              </Button>
             </TooltipTrigger>
             <TooltipContent>
               <p>Logout</p>
@@ -46,6 +61,12 @@ export function AppHeader() {
           </Tooltip>
         </div>
       </header>
-    </TooltipProvider >
+
+      <LogoutConfirmationModal
+        isOpen={logoutOpen}
+        onClose={() => setLogoutOpen(false)}
+        onConfirm={handleLogoutConfirm}
+      />
+    </TooltipProvider>
   )
 }

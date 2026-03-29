@@ -3,17 +3,17 @@ import PendingListCard, { type PendingItem } from './PendingListCard'
 
 const pendingBooks: PendingItem[] = [
     {
-        title: 'The Chronicles of Eternity',
+        title: 'The Chronicles of Eternity_1',
         subtitle: 'by Sarah Mitchell  •  Fantasy',
         time: 'about 12 hours ago',
     },
     {
-        title: 'The Chronicles of Eternity',
+        title: 'The Chronicles of Eternity_2',
         subtitle: 'by Sarah Mitchell  •  Fantasy',
         time: 'about 12 hours ago',
     },
     {
-        title: 'The Chronicles of Eternity',
+        title: 'The Chronicles of Eternity_3',
         subtitle: 'by Sarah Mitchell  •  Fantasy',
         time: 'about 12 hours ago',
     },

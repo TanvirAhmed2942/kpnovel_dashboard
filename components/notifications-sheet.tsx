@@ -19,6 +19,11 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import { cn } from "@/lib/utils"
 
 type NotificationItem = {
@@ -111,20 +116,27 @@ export function NotificationsSheetTrigger({
 
   return (
     <Sheet>
-      <SheetTrigger asChild>
-        <Button
-          type="button"
-          variant="ghost"
-          size="icon"
-          className={cn(
-            "text-gray-900 hover:text-gray-700 hover:bg-gray-200 mr-4 size-8 rounded-xl border",
-            className
-          )}
-          aria-label="Open notifications"
-        >
-          <BellIcon className="size-4" />
-        </Button>
-      </SheetTrigger>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <SheetTrigger asChild>
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className={cn(
+                "mr-4 size-8 rounded-xl border text-gray-900 hover:bg-gray-200 hover:text-gray-700",
+                className
+              )}
+              aria-label="Open notifications"
+            >
+              <BellIcon className="size-4" />
+            </Button>
+          </SheetTrigger>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Notifications</p>
+        </TooltipContent>
+      </Tooltip>
       <SheetContent
         side="right"
         className="flex h-full w-full flex-col gap-0 overflow-hidden p-0 sm:max-w-lg bg-gray-100"
