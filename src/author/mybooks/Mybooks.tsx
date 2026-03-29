@@ -1,6 +1,7 @@
 "use client"
 
 import React from "react"
+import { useRouter } from "next/navigation"
 import AddEditBookModal, {
   type AddBookFormValues,
   type AddEditBookInitialValues,
@@ -74,6 +75,7 @@ function bookInfoFromMyBooksRow(book: BookRow): BookInfoData {
   }
 }
 function Mybooks() {
+  const router = useRouter()
   const [bookModalOpen, setBookModalOpen] = React.useState(false)
   const [editingBook, setEditingBook] = React.useState<BookRow | null>(null)
   const [viewingBook, setViewingBook] = React.useState<BookRow | null>(null)
@@ -97,6 +99,11 @@ function Mybooks() {
   const openViewBook = (book: BookRow) => {
     setViewingBook(book)
     setViewingBookModalOpen(true)
+  }
+
+  const goAddChapters = (book: BookRow) => {
+    const segment = encodeURIComponent(book.title)
+    router.push(`/author/add-chapter/${segment}`)
   }
 
   const handleSaveBook = (values: AddBookFormValues) => {
@@ -286,7 +293,8 @@ function Mybooks() {
             views={book.views}
             onEdit={() => openEditBook(book)}
             onView={() => openViewBook(book)}
-            onDelete={() => { }}
+            onAddChapters={() => goAddChapters(book)}
+            onDelete={() => {}}
           />
         ))}
       </div>
