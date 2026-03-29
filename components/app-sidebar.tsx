@@ -3,16 +3,14 @@
 import * as React from "react"
 
 import { NavMain } from "@/components/nav-main"
-import { NavUser } from "@/components/nav-user"
 import { TeamSwitcher } from "@/components/team-switcher"
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { TerminalSquareIcon, Settings2Icon, LayoutDashboardIcon, BookIcon, MessageCircleIcon, UsersIcon, ShieldCheckIcon, UserIcon, StarIcon, SettingsIcon } from "lucide-react"
+import { LayoutDashboardIcon, BookIcon, MessageCircleIcon, UsersIcon, ShieldCheckIcon, UserIcon, StarIcon, SettingsIcon } from "lucide-react"
 import { BookOpenIcon } from "lucide-react"
 import { BarChartIcon } from "lucide-react"
 import { usePathname } from "next/navigation"
@@ -156,55 +154,7 @@ const SuperAdminViewItems = [
   },
 ]
 
-// This is sample data.
-const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
 
-  navMain: [
-    {
-      title: "Playground",
-      url: "#",
-      icon: (
-        <TerminalSquareIcon
-        />
-      ),
-      isActive: true,
-    },
-
-
-    {
-      title: "Settings",
-      url: "#",
-      icon: (
-        <Settings2Icon
-        />
-      ),
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
-    },
-  ],
-
-}
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname()
@@ -222,9 +172,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <NavMain items={navMain} pathname={pathname} />
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
+
       <SidebarRail />
     </Sidebar>
   )

@@ -1,5 +1,3 @@
-"use client"
-
 import * as React from "react"
 import { Dialog as SheetPrimitive } from "radix-ui"
 
@@ -72,7 +70,7 @@ function SheetContent({
           <SheetPrimitive.Close data-slot="sheet-close" asChild>
             <Button
               variant="ghost"
-              className="absolute top-3 right-3"
+              className="absolute top-3 right-3 text-gray-900 hover:text-gray-700 hover:bg-gray-200 rounded-xl border"
               size="icon-sm"
             >
               <XIcon
