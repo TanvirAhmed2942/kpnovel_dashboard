@@ -12,6 +12,10 @@ import Stats from "@/components/common/stats/Stats"
 import { Button } from "@/components/ui/button"
 import BookCard from "@/src/author/mybooks/BookCard"
 import { BookIcon, BookOpenIcon, EyeIcon, MessageCircleIcon } from "lucide-react"
+import BookInfoModal, {
+  type BookInfoData,
+  buildChapterPreviews,
+} from "@/components/common/bookinfomodal/BookInfoModal"
 
 type BookRow = {
   id: string
@@ -43,10 +47,37 @@ function bookToInitialValues(book: BookRow): AddEditBookInitialValues {
   }
 }
 
+function bookInfoFromMyBooksRow(book: BookRow): BookInfoData {
+  const moderationStatus: BookInfoData["moderationStatus"] =
+    book.status === "published" ? "Published" : "Pending"
+  const formatLabel = book.bookType === "novel" ? "Novel" : "Short Stories"
+
+  return {
+    id: book.id,
+    title: book.title,
+    coverSrc: book.coverImage,
+    authorName: "You",
+    authorRole: "Author",
+    authorEmail: "author@example.com",
+    authorAvatarSrc: "/author.jpg",
+    moderationStatus,
+    formatLabel,
+    genres: book.genres,
+    rating: book.rating,
+    reviews: book.reviews,
+    chapters: book.chapters,
+    likes: book.likes,
+    views: book.views,
+    description: book.description,
+    hashtags: book.tags.join(" "),
+    chapterPreviews: buildChapterPreviews(book.chapters),
+  }
+}
 function Mybooks() {
   const [bookModalOpen, setBookModalOpen] = React.useState(false)
   const [editingBook, setEditingBook] = React.useState<BookRow | null>(null)
-
+  const [viewingBook, setViewingBook] = React.useState<BookRow | null>(null)
+  const [viewingBookModalOpen, setViewingBookModalOpen] = React.useState(false)
   const modalInitialValues = React.useMemo(
     (): AddEditBookInitialValues | undefined =>
       editingBook ? bookToInitialValues(editingBook) : undefined,
@@ -63,9 +94,9 @@ function Mybooks() {
     setBookModalOpen(true)
   }
 
-  const handleBookModalOpenChange = (open: boolean) => {
-    setBookModalOpen(open)
-    if (!open) setEditingBook(null)
+  const openViewBook = (book: BookRow) => {
+    setViewingBook(book)
+    setViewingBookModalOpen(true)
   }
 
   const handleSaveBook = (values: AddBookFormValues) => {
@@ -126,7 +157,7 @@ function Mybooks() {
   const books: BookRow[] = [
     {
       id: "1",
-      title: "Book 1",
+      title: "The Immortal’s Path",
       coverImage: "/bekas.jpg",
       status: "published",
       genres: ["Fantasy", "Romance", "Young Adult"],
@@ -254,16 +285,31 @@ function Mybooks() {
             likes={book.likes}
             views={book.views}
             onEdit={() => openEditBook(book)}
-            onDelete={() => {}}
+            onView={() => openViewBook(book)}
+            onDelete={() => { }}
           />
         ))}
       </div>
 
       <AddEditBookModal
         open={bookModalOpen}
-        onOpenChange={handleBookModalOpenChange}
+        onOpenChange={(open) => {
+          setBookModalOpen(open)
+          if (!open) setEditingBook(null)
+        }}
         initialValues={modalInitialValues}
         onSave={handleSaveBook}
+      />
+      <BookInfoModal
+        open={viewingBookModalOpen}
+        onOpenChange={(open) => {
+          setViewingBookModalOpen(open)
+          if (!open) {
+            setViewingBook(null)
+          }
+        }}
+        book={viewingBook ? bookInfoFromMyBooksRow(viewingBook) : null}
+        showModerationActions={false}
       />
     </div>
   )

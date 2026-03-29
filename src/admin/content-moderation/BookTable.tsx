@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { Eye, Ban, CheckCircle2, Trash2 } from "lucide-react";
 import BookInfoModal, {
   bookInfoFromModerationRow,
-} from "./BookInfoModal";
+} from "../../../components/common/bookinfomodal/BookInfoModal";
 import PageLimit from "@/components/common/pagelimit/PageLimit";
 import {
   Table,

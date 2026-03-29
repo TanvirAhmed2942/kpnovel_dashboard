@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+
 import SmallPageInfo from "@/components/common/smallPageInfo/smallPageInfo";
 import FilterSearch from "@/components/common/filter/FIlterSearch";
 import BookTable from "./BookTable";

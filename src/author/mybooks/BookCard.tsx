@@ -21,6 +21,7 @@ export type BookCardProps = {
     likes: number
     views: number
     onEdit?: () => void
+    onView?: () => void
     onDelete?: () => void
 }
 
@@ -35,6 +36,7 @@ function BookCard({
     likes,
     views,
     onEdit,
+    onView,
     onDelete,
 }: BookCardProps) {
     const statusChip =
@@ -120,6 +122,14 @@ function BookCard({
                 >
                     <PencilIcon className="mr-2 size-5" />
                     Edit
+                </Button>
+                <Button
+                    variant="outline"
+                    className="h-10 flex-1 rounded-xl border-border/30 bg-transparent text-muted-foreground hover:bg-transparent hover:text-gray-800"
+                    onClick={onView}
+                >
+                    <EyeIcon className="mr-2 size-5" />
+                    View
                 </Button>
                 <Button
                     variant="outline"
