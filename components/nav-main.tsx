@@ -36,7 +36,7 @@ export function NavMain({
 
   return (
     <SidebarGroup>
-      <SidebarMenu>
+      <SidebarMenu className="space-y-2 mt-5">
         {items.map((item) => {
           const hasChildren = !!item.items?.length
           const isItemActive = isRouteActive(item.url)
@@ -45,7 +45,7 @@ export function NavMain({
           )
 
           return (
-            <SidebarMenuItem key={item.title}>
+            <SidebarMenuItem key={item.title} >
               {hasChildren ? (
                 <Collapsible
                   defaultOpen={item.isActive || isItemActive || hasActiveChild}
@@ -87,6 +87,7 @@ export function NavMain({
                   tooltip={item.title}
                   asChild
                   isActive={isItemActive}
+
                 >
                   <Link href={item.url}>
                     {item.icon}

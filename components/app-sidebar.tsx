@@ -10,7 +10,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { LayoutDashboardIcon, BookIcon, MessageCircleIcon, UsersIcon, ShieldCheckIcon, UserIcon, StarIcon, SettingsIcon } from "lucide-react"
+import { LayoutDashboardIcon, BookIcon, MessageCircleIcon, UsersIcon, ShieldCheckIcon, UserIcon, StarIcon, SettingsIcon, ChartScatter } from "lucide-react"
 import { BookOpenIcon } from "lucide-react"
 import { BarChartIcon } from "lucide-react"
 import { usePathname } from "next/navigation"
@@ -150,6 +150,13 @@ const SuperAdminViewItems = [
     icon: (
       <SettingsIcon
       />
+    ),
+  },
+  {
+    title: "Site Analytics",
+    url: "/super_admin/site-analytics",
+    icon: (
+      <ChartScatter />
     ),
   },
 ]
