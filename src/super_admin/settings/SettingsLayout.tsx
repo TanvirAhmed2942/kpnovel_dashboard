@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/tabs";
 import { GeneralSettingsContent } from "./GeneralSettingsContent";
 import { LegalDocumentsContent } from "./LegalDocumentsContent";
+import FaqContent from "./FaqContent";
 
 function SettingsLayout() {
   return (
@@ -33,6 +34,12 @@ function SettingsLayout() {
           >
             Legal Documents
           </TabsTrigger>
+          <TabsTrigger
+            value="faq"
+            className=" px-5 py-2 text-sm font-medium text-gray-800 hover:text-gray-900 shadow-none transition-none data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:shadow-none"
+          >
+            FAQ
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="general" className="mt-0 outline-none">
@@ -41,6 +48,9 @@ function SettingsLayout() {
 
         <TabsContent value="legal" className="mt-0 outline-none">
           <LegalDocumentsContent />
+        </TabsContent>
+        <TabsContent value="faq" className="mt-0 outline-none">
+          <FaqContent />
         </TabsContent>
       </Tabs>
     </div>

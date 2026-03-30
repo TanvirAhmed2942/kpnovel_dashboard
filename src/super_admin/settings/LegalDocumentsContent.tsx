@@ -45,11 +45,11 @@ const initialDocuments: LegalDocumentRow[] = [
   },
   {
     id: "3",
-    title: "FAQ's",
+    title: "Copy Right Notice",
     status: "draft",
     lastUpdated: "2025-02-28",
     wordCount: 856,
-    bodyHtml: `<h2>Frequently asked questions</h2><p><em>Draft — content in progress.</em></p><p>Common questions about accounts, billing, and content policies will appear here.</p>`,
+    bodyHtml: `<h2>Copy Right Notice</h2><p><em>Draft — content in progress.</em></p><p>This is the copy right notice for the platform.</p>`,
   },
   {
     id: "4",
